@@ -15,8 +15,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".scan.ScanPayment"/>
-        <activity android:name=".main.Register"/>
+        <activity android:name=".scan.ScanParticipation"/>
+        <activity android:name=".scan.ScanPaymentView"/>
         <activity android:name=".scan.ScanRegisterEvent"/>
+        <activity android:name=".main.SpinnerPage"/>
         <activity android:name=".main.MainActivity"/>
+
     </application>
 </manifest>

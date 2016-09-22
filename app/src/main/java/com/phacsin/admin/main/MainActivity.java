@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent r = new Intent(getApplicationContext(), Register.class);
+                Intent r = new Intent(getApplicationContext(), SpinnerPage.class);
                 startActivity(r);
             }
         });

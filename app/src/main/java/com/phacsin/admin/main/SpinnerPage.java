@@ -15,7 +15,7 @@ import com.phacsin.admin.scan.ScanRegisterEvent;
 /**
  * Created by Bineesh P Babu on 21-09-2016.
  */
-public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SpinnerPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinnervenue,spinnerevent,spinnereventdetail;
     private String[] venues = { "Venue 1", "Venue 2", "Venue 3", "Venue 4",
             "Venue 5", "Venue 6", "Venue 7", "Venue 8"};
@@ -25,7 +25,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.spinner);
         spinnervenue = (Spinner) findViewById(R.id.venue);
         spinnerevent = (Spinner) findViewById(R.id.events);
         spinnereventdetail = (Spinner) findViewById(R.id.event_detail);

@@ -13,6 +13,6 @@ public class ScanPayment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pay);
+        setContentView(R.layout.scan_pay);
     }
 }

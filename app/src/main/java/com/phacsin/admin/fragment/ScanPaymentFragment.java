@@ -158,8 +158,10 @@ public class ScanPaymentFragment extends Fragment implements MessageDialogFragme
         String Contents=rawResult.getText();
        /* showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());*/
         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
-                .setTitleText("ScanPayment")
-                .setContentText(Contents)
+                .setTitleText(Contents)
+                .setContentText("Payment confirmation")
+                .setCancelText("Cancel")
+                .setConfirmText("Pay")
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {

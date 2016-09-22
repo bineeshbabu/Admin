@@ -1,20 +1,12 @@
 package com.phacsin.admin.fragment;
 
-/**
- * Created by Bineesh P Babu on 22-09-2016.
- */
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,7 +22,10 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScanRegisterFragment extends Fragment implements MessageDialogFragment.MessageDialogListener,
+/**
+ * Created by Bineesh P Babu on 22-09-2016.
+ */
+public class ScanPaymentViewFragment extends Fragment implements MessageDialogFragment.MessageDialogListener,
         ZXingScannerView.ResultHandler, FormatSelectorDialogFragment.FormatSelectorDialogListener,
         CameraSelectorDialogFragment.CameraSelectorDialogListener {
     private static final String FLASH_STATE = "FLASH_STATE";
@@ -159,9 +154,7 @@ public class ScanRegisterFragment extends Fragment implements MessageDialogFragm
        /* showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());*/
         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                 .setTitleText(Contents)
-                .setContentText("Regiser for event")
-                .setCancelText("Cancel")
-                .setConfirmText("Register")
+                .setContentText("Already Paid")
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
