@@ -1,7 +1,7 @@
-package com.phacsin.admin;
+package com.phacsin.admin.fragment;
 
 /**
- * Created by Bineesh P Babu on 21-09-2016.
+ * Created by Bineesh P Babu on 22-09-2016.
  */
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -20,6 +20,9 @@ import android.view.ViewGroup;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.phacsin.admin.CameraSelectorDialogFragment;
+import com.phacsin.admin.FormatSelectorDialogFragment;
+import com.phacsin.admin.MessageDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class FullScannerFragment extends Fragment implements MessageDialogFragment.MessageDialogListener,
+public class ScanRegisterFragment extends Fragment implements MessageDialogFragment.MessageDialogListener,
         ZXingScannerView.ResultHandler, FormatSelectorDialogFragment.FormatSelectorDialogListener,
         CameraSelectorDialogFragment.CameraSelectorDialogListener {
     private static final String FLASH_STATE = "FLASH_STATE";
@@ -155,7 +158,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
         String Contents=rawResult.getText();
        /* showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());*/
         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
-                .setTitleText("Payment")
+                .setTitleText("Confirm")
                 .setContentText(Contents)
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
@@ -231,3 +234,4 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
         closeFormatsDialog();*/
     }
 }
+

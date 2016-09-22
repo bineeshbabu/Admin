@@ -8,8 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.phacsin.admin.MainActivity">
-
+    tools:context=".main.MainActivity">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,7 +21,23 @@
         android:layout_marginTop="24dp"
         android:textColor="@color/blue"
         android:background="@drawable/corner_radius"
-        android:text="Payment"/>
+        android:text="Payment Desk"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/view_payment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/blue"
+        android:background="@drawable/corner_radius"
+        android:text="Payment Confirmation"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/participation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/blue"
+        android:background="@drawable/corner_radius"
+        android:text="Participation"/>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="fill_parent"
@@ -30,6 +45,6 @@
         android:layout_marginTop="24dp"
         android:textColor="@color/blue"
         android:background="@drawable/corner_radius"
-        android:text="Register"/>
+        android:text="Event Registration"/>
 </LinearLayout>
 </RelativeLayout>

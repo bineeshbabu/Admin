@@ -1,4 +1,4 @@
-package com.phacsin.admin;
+package com.phacsin.admin.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.phacsin.admin.R;
+import com.phacsin.admin.scan.ScanRegisterEvent;
 
 /**
  * Created by Bineesh P Babu on 21-09-2016.
@@ -31,7 +33,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent r = new Intent(getApplicationContext(), Register_Scanning.class);
+                Intent r = new Intent(getApplicationContext(), ScanRegisterEvent.class);
                 startActivity(r);
             }
         });
