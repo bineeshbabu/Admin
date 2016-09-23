@@ -64,9 +64,40 @@ public class ScanRegisterEvent extends AppCompatActivity  implements ZXingScanne
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            dbHandler.insertEvent(contents, event_id);
-                            scannerView.startCamera();
-                            sweetAlertDialog.dismissWithAnimation();
+                            if(dbHandler.userExists(contents)) {
+                                dbHandler.insertEvent(contents, event_id);
+                                sweetAlertDialog.dismissWithAnimation();
+                                new SweetAlertDialog(ScanRegisterEvent.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Event Registration")
+                                        .setContentText("Successful")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                scannerView.startCamera();
+                                                sweetAlertDialog.dismissWithAnimation();
+                                            }
+                                        })
+
+                                        .show();
+                            }
+                            else
+                            {
+                                sweetAlertDialog.dismissWithAnimation();
+                                new SweetAlertDialog(ScanRegisterEvent.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Event Registration")
+                                        .setContentText("Unsuccessful")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                scannerView.startCamera();
+                                                sweetAlertDialog.dismissWithAnimation();
+                                            }
+                                        })
+
+                                        .show();
+                            }
                         }
                     })
                     .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {

@@ -1,10 +1,14 @@
 package com.phacsin.admin.main;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public Button pay,reg,pay_view,participate;
     private Button push;
     DBHandler dbhandler;
-
+    SweetAlertDialog sweetalert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         participate = (Button) findViewById(R.id.participation);
         push = (Button) findViewById(R.id.btn_push);
         dbhandler = new DBHandler(getApplicationContext());
+        checkCameraPermission();
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,8 +108,12 @@ public class MainActivity extends AppCompatActivity {
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    sweetalert =  new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE)
+                                            .setTitleText("Uploading Data")
+                                            .setContentText("Wait a minute..");
+                                    sweetalert.show();
                                     registerEvent();
-                                    sweetAlertDialog.dismissWithAnimation();
                                 }
                             })
                             .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -117,6 +126,34 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA},
+                        0);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
     }
 
     private void registerEvent() {
@@ -152,13 +189,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(response.equals("Success")) {
+                    sweetalert.dismiss();
                     dbhandler.removeEvent();
-                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.SUCCESS_TYPE)
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText(response)
                             .setContentText("Successful")
                             .show();                }
                 else
-                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.SUCCESS_TYPE)
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText(response)
                             .setContentText("Successful")
                             .show();
@@ -189,6 +227,25 @@ public class MainActivity extends AppCompatActivity {
 // Adding request to request queue
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(strReq);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 0 : {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                } else {
+
+                }
+                return;
+            }
+
+        }
     }
 
 }

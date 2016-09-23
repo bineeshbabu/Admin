@@ -22,7 +22,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
         String TABLE_ACTIVE_FILTER = "CREATE TABLE registration(uuid TEXT,event_id TEXT)";
+        String TABLE_ACTIVE_USER = "CREATE TABLE user(uuid TEXT)";
+
         db.execSQL(TABLE_ACTIVE_FILTER);
+        db.execSQL(TABLE_ACTIVE_USER);
     }
 
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
@@ -42,6 +45,12 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
+    public void insertUser(String uuid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("uuid", uuid);
+        db.insert("user", null, contentValues);
+    }
 
     public void updateEvent(String uuid, String event_id) {
         try {
@@ -89,9 +98,25 @@ public class DBHandler extends SQLiteOpenHelper {
         return res.getCount()!=0;
     }
 
+    public boolean userExists(String uuid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * from user WHERE uuid='" + uuid+"'", null);
+        return res.getCount()!=0;
+    }
+
     public int numberOfRows(String table_name) {
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, table_name);
         return numRows;
+    }
+
+    public void removeUser() {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String query = "DELETE FROM user";
+            db.execSQL(query);
+        } catch (SQLiteException e) {
+            Log.d("sqlite", e.toString());
+        }
     }
 }
