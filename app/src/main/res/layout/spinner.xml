@@ -1,39 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@color/blue"
     android:layout_height="match_parent">
-    <Spinner
-        android:id="@+id/venue"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"/>
-    <Spinner
-        android:id="@+id/events"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"/>
-    <Spinner
-        android:id="@+id/event_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"/>
+        android:id="@+id/layout_id"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:background="@drawable/corner_radius">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/spin1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel"
+                android:layout_gravity="center">
+                <Spinner
+                    android:id="@+id/venue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:background="@drawable/corner_radius"
+            android:layout_gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel"
+                android:id="@+id/spin2"
+                android:layout_gravity="center">
+                <Spinner
+                    android:id="@+id/event_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+    </LinearLayout>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_apply"
         android:layout_width="200sp"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textColor="#ffffff"
+        android:textColor="@color/blue"
+        android:layout_centerInParent="true"
         android:background="@drawable/corner_button"
         android:text="Apply"/>
 
 
-</LinearLayout>
+</RelativeLayout>

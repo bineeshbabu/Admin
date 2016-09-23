@@ -13,7 +13,14 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-
+        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+            android:layout_width="70sp"
+            android:elevation="10sp"
+            android:layout_height="70sp"
+            app:siShape="@drawable/shape_rounded_rectangle"
+            android:src="@drawable/ent"
+            app:siSquare="true"
+            android:layout_gravity="center_horizontal" />
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -21,7 +28,7 @@
             android:layout_marginTop="50sp"
             android:layout_marginBottom="8dp">
 
-            <EditText
+            <com.phacsin.admin.customfonts.HelveticaEditText
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +45,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
 
-            <EditText
+            <com.phacsin.admin.customfonts.HelveticaEditText
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
