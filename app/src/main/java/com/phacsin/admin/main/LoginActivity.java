@@ -9,13 +9,27 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.phacsin.admin.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -65,33 +79,30 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
-        Intent r = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(r);
-
-        /*String URL = "http://entreprenia.org/app/login.php?email="+email+"&password="+password;
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                URL, new Response.Listener<String>() {
+        String URL = "http://entreprenia.org/app/login_admin.php?email="+email+"&password="+password;
+        JsonObjectRequest strReq = new JsonObjectRequest(Request.Method.GET,
+                URL,null, new Response.Listener<JSONObject>() {
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-                if(response.equals("Success")) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("email", _emailText.getText().toString());
-                    editor.commit();
-                    startActivity(new Intent(getApplicationContext(),Profile.class));
-                    pDialog.hide();
-                }
-                else
+                try {
+                String result = response.getString("result");
+                    if (result.equals("Success")) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("uuid", response.getString("result"));
+                        editor.commit();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        pDialog.hide();
+                    } else {
+                        pDialog.hide();
+                        _loginButton.setEnabled(true);
+                       Toast.makeText(getApplicationContext(),result, Toast.LENGTH_LONG).show();
+
+                    }
+                }catch (JSONException e)
                 {
-                    pDialog.hide();
-                    _loginButton.setEnabled(true);
-                  *//*  Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();*//*
-                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Info")
-                            .setContentText(response)
-                            .setConfirmText("Ok")
-                            .show();
+                    e.printStackTrace();
                 }
 
             }
@@ -134,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                 // By default we just finish the Activity and log them in automatically
                 this.finish();
             }
-        }*/
+        }
     }
 
     @Override
