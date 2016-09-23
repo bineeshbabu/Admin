@@ -5,9 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <fragment
-        android:name="com.phacsin.admin.fragment.ScanPaymentFragment"
-        android:id="@+id/scanner_fragment"
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:id="@+id/scanner_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

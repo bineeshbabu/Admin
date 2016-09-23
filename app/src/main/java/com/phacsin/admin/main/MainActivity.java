@@ -153,10 +153,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if(response.equals("Success")) {
                     dbhandler.removeEvent();
-                    Toast.makeText(getApplicationContext(),response, Toast.LENGTH_LONG).show();
-                }
+                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText(response)
+                            .setContentText("Successful")
+                            .show();                }
                 else
-                    Toast.makeText(getApplicationContext(),response, Toast.LENGTH_LONG).show();
+                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText(response)
+                            .setContentText("Successful")
+                            .show();
             }
         }, new Response.ErrorListener() {
 

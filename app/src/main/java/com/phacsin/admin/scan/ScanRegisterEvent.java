@@ -48,53 +48,6 @@ public class ScanRegisterEvent extends AppCompatActivity  implements ZXingScanne
         dbHandler = new DBHandler(getApplicationContext());
     }
 
-    /*private void registerEvent(String uuid) {
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        String event_id= getIntent().getStringExtra("event_id");
-        String admin_id=sharedPreferences.getString("uuid","");
-        final String URL = "http://entreprenia.org/app/registration_confirm.php?event_id="+event_id+"&admin_id="+admin_id+"&uuid="+uuid;
-        Log.d("URL",URL);
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                URL, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Success")) {
-
-                }
-                else
-                    Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("vError", "Error: " + error.getMessage());
-                String errorMsg;
-                if(error instanceof NoConnectionError)
-                    errorMsg = "Network Error";
-                else if(error instanceof TimeoutError)
-                    errorMsg = "Timeout Error";
-                else
-                    errorMsg = "Unknown Error";
-                Snackbar.make(findViewById(android.R.id.content), errorMsg, Snackbar.LENGTH_LONG)
-                        .setAction("RETRY", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                registerEvent(URL);
-                            }
-                        }).show();
-            }
-
-        });
-
-// Adding request to request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(strReq);
-    }
-
-*/
 
     @Override
     public void handleResult(Result result) {

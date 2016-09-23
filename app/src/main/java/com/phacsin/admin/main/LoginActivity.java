@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("uuid", response.getString("uuid"));
                         editor.commit();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        _loginButton.setEnabled(true);
                         pDialog.hide();
                     } else {
                         pDialog.hide();
