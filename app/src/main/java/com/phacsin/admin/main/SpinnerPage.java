@@ -18,13 +18,13 @@ import com.phacsin.admin.scan.ScanRegisterEvent;
 /**
  * Created by Bineesh P Babu on 21-09-2016.
  */
-public class SpinnerPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SpinnerPage extends AppCompatActivity {
     Spinner spinnervenue,spinnereventdetail;
     private String[] venues = { "Venue 1", "Venue 2", "Venue 3", "Venue 4","Venue 5", "Venue 6", "Venue 7", "Venue 8"};
     private String[] event_details = { "Rise Of The Phoenix", "Motivate", "Investing Wisely", "Entrepreneurship In IOT ","Prototype To Product","Inspire"
     ,"Bulls N Bears","Corporate Roadies","Idea To Product","Best E Cell","Clash Of Corporates","Kickstarter","B-plan","Best Critic"
     ,"On Your Marks","Hire The Best","Lean Startup","Binary Marketing","Creative Thinking","Entrepreneurship In Non-IT Sector","Pitch Perfect"};
-
+    String event_id[] = new String[]{"phoenix","motivate","invest","iot","prototype","inspire","bnb","roadies","i2p","ecell","coc","kickstart","bplan","critic","marks","hire","lean","marketing","creative","en_in_no_it","pitch"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class SpinnerPage extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
                 Intent r = new Intent(getApplicationContext(), ScanRegisterEvent.class);
+                r.putExtra("event_id",event_id[spinnereventdetail.getSelectedItemPosition()]);
                 startActivity(r);
             }
         });
@@ -51,23 +52,7 @@ public class SpinnerPage extends AppCompatActivity implements AdapterView.OnItem
         event_details_list.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnervenue.setAdapter(venue_list);
-        spinnervenue.setOnItemSelectedListener(this);
-
         spinnereventdetail.setAdapter(event_details_list);
-        spinnereventdetail.setOnItemSelectedListener(this);
-    }
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        spinnervenue.setSelection(position);
-        String selState = (String) spinnervenue.getSelectedItem();
-
-
-        spinnereventdetail.setSelection(position);
-        String sel2 = (String) spinnereventdetail.getSelectedItem();
-    }
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-
     }
 
 }

@@ -151,7 +151,7 @@ public class ScanParticipationFragment extends Fragment implements MessageDialog
             r.play();
         } catch (Exception e) {}
         String Contents=rawResult.getText();
-       /* showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());*/
+        showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                 .setTitleText(Contents)
                 .setContentText("Confirm Participation")
@@ -159,16 +159,24 @@ public class ScanParticipationFragment extends Fragment implements MessageDialog
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismiss();
+                        mScannerView.startCamera();
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        mScannerView.startCamera();
+                        sweetAlertDialog.dismissWithAnimation();
                     }
                 })
                 .show();
     }
 
-   /* public void showMessageDialog(String message) {
+    public void showMessageDialog(String message) {
         DialogFragment fragment = MessageDialogFragment.newInstance("Scan Results", message, this);
         fragment.show(getActivity().getSupportFragmentManager(), "scan_results");
-    }*/
+    }
 
   /*  public void closeMessageDialog() {
         closeDialog("scan_results");

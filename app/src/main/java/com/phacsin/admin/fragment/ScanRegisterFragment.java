@@ -159,7 +159,7 @@ public class ScanRegisterFragment extends Fragment implements MessageDialogFragm
        /* showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());*/
         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                 .setTitleText(Contents)
-                .setContentText("Regiser for event")
+                .setContentText("Register for event")
                 .setCancelText("Cancel")
                 .setConfirmText("Register")
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {

@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 String result = response.getString("result");
                     if (result.equals("Success")) {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("uuid", response.getString("result"));
+                        editor.putString("uuid", response.getString("uuid"));
                         editor.commit();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         pDialog.hide();
